@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Moon Toad</title>
+
+
+  <link rel="stylesheet" href="css/foundation.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <script src="js/vendor/custom.modernizr.js"></script>
+
+    <!-- colors:
+dark grey: #41494c
+light grey: #a0a9a4
+blue:         #99e0e6
+chartreus:         #b7bd19
+orange:         #f25d07
+-->
+
+    <link rel="stylesheet" type="text/css" href="MyFontsWebfontsKit.css">
+
+    <style>
+        h1, body { font-family: MuseoSlab-500; }
+
+
+
+        #about, #cyclum, #tools, #circles, #elephant {
+            height: 300px;
+        }
+
+        #tools h1, #cyclum h1, #about h1, #circles h1, #elephant h1 {
+            color: white; }
+
+
+        header, #about, #cyclum, #tools, #circles, #elephant {
+            margin: 7px 7px 0 7px;
+
+        }
+
+
+
+
+        header {
+            background-color: #41494c;
+            padding: 50px 0;
+            /*text-align: center; */
+        }
+        /*header img {
+            display: block;
+            margin: 0 auto;
+    }*/
+        header, header h2  {
+                    color: #a0a9a4;
+
+        }
+
+
+
+        #about {
+            background-color:#99e0e6;
+        }
+
+        #cyclum {
+            background-color: #f25d07;
+        }
+        #tools {
+            background-color: #b7bd19;
+        }
+        #circles {
+            background-color: #2ecc71;
+        }
+        #elephant {
+            background-color: #f1c40f;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="row">
+        <div class = "large-3 columns">
+            <img width="150px" height="150px" src="grfx/logo.png" alt="moon toad logo"/> 
+        </div>
+        <div class="large-3 columns">
+          <h2>Moon Toad</h2>
+          <p>Moon Toad: Weaver, Painter, Loom Builder, Cabinetmaker and Temple Builder. This is a blog about creations and the seasons and the effects the seasons have on us.
+            </p>
+        </div>
+        <div class="large-3 columns">
+          <p>Some other stuff</p>
+        </div>
+        <div class="large-3 columns">
+          <p>More Stuff</p>
+        </div>
+        </div>
+    </header>
+
+    <section id="about">
+    <div class="row">
+        <div class = "large-12 columns">
+            <h1>Moon Toad</h1>
+            <p>Moon Toad: Weaver, Painter, Loom Builder, Cabinetmaker and Temple Builder.
+                This is a blog about creations and the seasons and the effects the seasons have on us.
+            </p>
+        </div>
+    </div>
+    </section>
+
+        <section id="elephant">
+        <div class="row">
+            <div class="large-12 columns">
+                <h1>Elephant's Nest</h1>
+
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <p>The first temple.</p>
+            </div>
+            <div class="large-3 columns">
+                <p>Done in prepartaion for cyclum lunarem</p>
+            </div>
+            <div class="large-3 columns">
+                <p>adventures in paint</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cyclum">
+        <div class="row">
+        <div class = "large-12 columns">
+
+            <h1>cyclum lunarem</h1>
+
+            </div>
+        </div>
+    </section>
+
+        <section id="tools">
+        <div class="row">
+        <div class = "large-12 columns">
+
+            <h1>tools make the world go round.</h1>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="circles">
+        <div class="row">
+            <div class="large-12 columns">
+                <h1>Circles, Spheres and Orbs.</h1>
+                <p>Not really sure at this point which one is the appropriate, so i'll use all three.
+                    Orb - the shape of the universe.  The precursor to oblivion.  The tennant of the
+                    Moon.  A happy representation of a complete moment in time, the balance of that
+                    most honest force of matter - gravity. Spledid astonishment of the eyes.
+                </p>
+
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <p>Explorations into the orb form</p>
+            </div>
+            <div class="large-3 columns">
+                <p>Done in prepartaion for cyclum lunarem</p>
+            </div>
+            <div class="large-3 columns">
+                <p>adventures in paint</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="contain-to-grid sticky">
+        <nav class="top-bar">
+          <ul class="title-area">
+            <li class="name"><!-- Leave this empty --></li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+          </ul>
+
+          <section class="top-bar-section">
+              <ul class="left">
+                  <li class="active"><a href="#">Twitter</a></li>
+                  <li class="active"><a href="#">Tumblr</a></li>
+                  <li class="active"><a href="#">Shop</a></li>
+              </ul>
+          </section>
+        </nav>
+    </div>
+
+
+
+	<div class="row">
+		<div class="large-8 columns">
+			<h3>The Grid</h3>
+
+			<!-- Grid Example -->
+			<div class="row">
+				<div class="large-12 columns">
+					<div class="panel">
+						<p>This is a twelve column section in a row. Each of these includes a div.panel element so you can see where the columns are - it's not required at all for the grid.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">
+					<div class="panel">
+						<p>Six columns</p>
+					</div>
+				</div>
+				<div class="large-6 columns">
+					<div class="panel">
+						<p>Six columns</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-4 columns">
+					<div class="panel">
+						<p>Four columns</p>
+					</div>
+				</div>
+				<div class="large-4 columns">
+					<div class="panel">
+						<p>Four columns</p>
+					</div>
+				</div>
+				<div class="large-4 columns">
+					<div class="panel">
+						<p>Four columns</p>
+					</div>
+				</div>
+			</div>
+
+			<h3>Buttons</h3>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <p><a href="#" class="small button">Small Button</a></p>
+          <p><a href="#" class="button">Medium Button</a></p>
+          <p><a href="#" class="large button">Large Button</a></p>
+        </div>
+        <div class="large-6 columns">
+          <p><a href="#" class="small alert button">Small Alert Button</a></p>
+          <p><a href="#" class="success button">Medium Success Button</a></p>
+          <p><a href="#" class="large secondary button">Large Secondary Button</a></p>
+        </div>
+      </div>
+		</div>
+
+		<div class="large-4 columns">
+			<h4>Getting Started</h4>
+			<p>We're stoked you want to try Foundation! To get going, this file (index.html) includes some basic styles you can modify, play around with, or totally destroy to get going.</p>
+
+			<h4>Other Resources</h4>
+			<p>Once you've exhausted the fun in this document, you should check out:</p>
+			<ul class="disc">
+				<li><a href="http://foundation.zurb.com/docs">Foundation Documentation</a><br />Everything you need to know about using the framework.</li>
+				<li><a href="http://github.com/zurb/foundation">Foundation on Github</a><br />Latest code, issue reports, feature requests and more.</li>
+				<li><a href="http://twitter.com/foundationzurb">@foundationzurb</a><br />Ping us on Twitter if you have questions. If you build something with this we'd love to see it (and send you a totally boss sticker).</li>
+			</ul>
+		</div>
+	</div>
+
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+
+  <script src="js/foundation.min.js"></script>
+  <!--
+
+  <script src="js/foundation/foundation.js"></script>
+
+  <script src="js/foundation/foundation.alerts.js"></script>
+
+  <script src="js/foundation/foundation.clearing.js"></script>
+
+  <script src="js/foundation/foundation.cookie.js"></script>
+
+  <script src="js/foundation/foundation.dropdown.js"></script>
+
+  <script src="js/foundation/foundation.forms.js"></script>
+
+  <script src="js/foundation/foundation.joyride.js"></script>
+
+  <script src="js/foundation/foundation.magellan.js"></script>
+
+  <script src="js/foundation/foundation.orbit.js"></script>
+
+  <script src="js/foundation/foundation.reveal.js"></script>
+
+  <script src="js/foundation/foundation.section.js"></script>
+
+  <script src="js/foundation/foundation.tooltips.js"></script>
+
+  <script src="js/foundation/foundation.topbar.js"></script>
+
+  <script src="js/foundation/foundation.interchange.js"></script>
+
+  <script src="js/foundation/foundation.placeholder.js"></script>
+
+  <script src="js/foundation/foundation.abide.js"></script>
+
+  -->
+
+  <script>
+    $(document).foundation();
+  </script>
+</body>
+</html>
