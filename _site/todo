@@ -1,0 +1,25 @@
+rake post
+mk post in draft
+mk image folder
+set thumbnail in yml to default for given category
+
+rake insert_img
+list drafts
+pick which one
+find corresponding img dir and insert md img fields for all imgs
+  -> also run jpegtran on each img
+  -> also resize img for current needs
+rename thumbnail to thumbnail-postname.png
+set thumbnail in yml of post in thumbnail is present
+
+
+
+should we make md file for each image? 
+  ->this could have pertinent flickr data, etc.
+
+rake publish
+list drafts
+pick which one
+copy to appropriate _posts folder
+
+
