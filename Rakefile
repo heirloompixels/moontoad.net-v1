@@ -133,7 +133,7 @@ def move_with_path(src, dst)
 end
 
 
-# rake draft["Title"]
+# rake draft["Title","Category"]
 desc "Create a post in _drafts"
 task :draft, :title, :category do |t, args|
   title = args[:title]
