@@ -4,6 +4,7 @@ require 'rake'
 require 'yaml'
 require 'fileutils'
 require 'rbconfig'
+require 'RMagick'
 
 # == Configuration =============================================================
 
@@ -48,9 +49,42 @@ end
 
 # Save the file with the title in the YAML front matter
 def write_file(content, title, directory, filename)
-  parsed_content = "#{content.sub("title:", "title: \"#{title}\"")}"
-  File.write("#{directory}/#{filename}", parsed_content)
+  #parsed_content = "#{content.sub("title:", "title: \"#{title}\"")}"
+
+  File.write("#{directory}/#{filename}", content)
   puts "#{filename} was created in '#{directory}'."
+end
+
+
+def template(name, category)
+  t = Time.now
+  contents = "" # otherwise using it below will be badly scoped
+  File.open("_posts/yyyy-mm-dd-template.markdown", "rb") do |f|
+    contents = f.read
+  end
+
+  postdir = "_posts/" + category # put the post in the category subdir
+  Dir.mkdir(postdir) unless File.exists?(postdir) # make the dir unless it exists
+  
+  #make the image dir corresponding to this post
+  Dir.mkdir("images/" + category) unless File.exists?("images/" + category) # make the dir unless it exists
+  imgdir = "images/" + category + "/" + t.strftime("%Y-%m-%d-") + name.downcase.gsub( /[^a-zA-Z0-9_\.]/, '-')
+  Dir.mkdir(imgdir) unless File.exists?(imgdir) # make the dir unless it exists
+
+  # update variables in the yaml frontmatter for the post
+  contents = contents.sub("%date%", t.strftime("%Y-%m-%d %H:%M:%S %z")).sub("%title%", name)
+  contents = contents.sub("%category%", category).sub("%layout%", category)
+
+  filename = postdir + "/" + t.strftime("%Y-%m-%d-") + name.downcase.gsub( /[^a-zA-Z0-9_\.]/, '-') + '.markdown'
+  if File.exists? filename then
+    puts "Post already exists: #{filename}"
+    return
+  end
+  File.open(filename, "wb") do |f|
+    f.write contents
+  end
+  puts "created #{filename}"
+  execute("vim -g #{filename}") #open macvim with the file
 end
 
 # Create the file with the slug and open the default editor
@@ -111,7 +145,12 @@ task :draft, :title, :category do |t, args|
   filename = transform_to_slug(title, extension)
   filename = "#{category}/#{DATE}-#{filename}"
 
+
+  #fix template
   content = read_file(template)
+  content = content.sub("%date%", Time.now.strftime("%Y-%m-%d %H:%M:%S %z")).sub("%title%", title)
+  content = content.sub("%category%", category).sub("%layout%", category)
+
 
   #make sure category folder exists for this 
 
@@ -213,12 +252,39 @@ task :img do
     puts "filepath: " + filepath
     puts "category: " + category
 
+
+
+
+
+
+
     puts "Inserting image tags into #{filepath}"    
       Dir["images/#{category}/#{basefilename}/*"].each do |i|
-        f << "![Title](#{i} \"Alt Text\")\n" 
+
+#only do this for new files
+unless (File.basename(i) =~ /web/)
+        image = Magick::Image.read(i).first
+
+        webized_path = "images/#{category}/#{basefilename}/#{File.basename(i, '.*')}-web#{File.extname(i)}"
+
+
+image.change_geometry!("680x") { |cols, rows, img|
+    newimg = img.resize(cols, rows)
+    newimg.write(webized_path)
+    puts "resized image to:  #{webized_path}"
+}
+
+
+    
+        f << "![Title](#{webized_path} \"Alt Text\")\n" 
         puts "added: #{i}"
+        puts "added: #{webized_path}"
+
+end
       end
+    
     end
+
 
   else
     puts "Please choose a draft by the assigned number."
@@ -323,4 +389,98 @@ task :transfer do
   else
     raise "#{command} isn't a valid file transfer command."
   end
+
 end
+
+
+#rake optimize
+desc "Optimize all images in images"
+task :optimize do 
+    RakeFileUtils.verbose(false)
+    start_time = Time.now
+
+    file_list = FileList.new 'images/**/*.{gif,jpeg,jpg,png}'
+
+    last_optimized_path = 'images/.last_optimized'
+    if File.exists? last_optimized_path
+      last_optimized = File.new last_optimized_path
+      file_list.exclude do |f|
+        File.new(f).mtime < last_optimized.mtime
+      end
+    end
+
+    puts "\nOptimizing #{ file_list.size } image files."
+
+    proc_cnt = 0
+    skip_cnt = 0
+    savings = {:old => Array.new, :new => Array.new}
+
+    file_list.each_with_index do |f, cnt|
+      puts "Processing: #{cnt+1}/#{file_list.size} #{f.to_s}"
+
+      extension = File.extname(f).delete('.').gsub(/jpeg/,'jpg')
+      ext_check = `file -b #{f} | awk '{print $1}'`.strip.downcase
+      ext_check.gsub!(/jpeg/,'jpg')
+      if ext_check != extension
+        puts "\t#{f.to_s} is a: '#{ext_check}' not: '#{extension}' ..skipping"
+        skip_cnt = skip_cnt + 1
+        next
+      end
+
+      case extension
+      when 'gif'
+        `gifsicle -O2 #{f} > #{f}.n`
+      when 'png'
+        `pngcrush -q -rem alla -reduce -brute #{f} #{f}.n`
+      when 'jpg'
+        `jpegtran -copy none -optimize -perfect -progressive #{f} > #{f}.p`
+        prog_size = File.size?("#{f}.p")
+
+        `jpegtran -copy none -optimize -perfect #{f} > #{f}.np`
+        nonprog_size = File.size?("#{f}.np")
+
+        if prog_size < nonprog_size
+          File.delete("#{f}.np")
+          File.rename("#{f}.p", "#{f}.n")
+        else
+          File.delete("#{f}.p")
+          File.rename("#{f}.np", "#{f}.n")
+        end
+      else
+        skip_cnt = skip_cnt + 1
+        next
+      end
+
+      old_size = File.size?(f).to_f
+      new_size = File.size?("#{f}.n").to_f
+
+      if new_size < old_size
+        File.delete(f)
+        File.rename("#{f}.n", f)
+      else
+        new_size = old_size
+        File.delete("#{f}.n")
+      end
+
+      savings[:old] << old_size
+      savings[:new] << new_size
+
+      reduction = 100.0 - (new_size/old_size*100.0)
+
+      puts "Output: #{sprintf "%0.2f", reduction}% | #{old_size.to_i} -> #{new_size.to_i}"
+      proc_cnt = proc_cnt + 1
+    end
+
+    total_old = savings[:old].inject(0){|sum,item| sum + item}
+    total_new = savings[:new].inject(0){|sum,item| sum + item}
+    total_reduction = total_old > 0 ? (100.0 - (total_new/total_old*100.0)) : 0
+
+    minutes, seconds = (Time.now - start_time).divmod 60
+    puts "\nTotal run time: #{minutes}m #{seconds.round}s"
+
+    puts "Files: #{file_list.size}\tProcessed: #{proc_cnt}\tSkipped: #{skip_cnt}"
+    puts "\nTotal savings:\t#{sprintf "%0.2f", total_reduction}% | #{total_old.to_i} -> #{total_new.to_i} (#{total_old.to_i - total_new.to_i})"
+
+    FileUtils.touch last_optimized_path
+end
+

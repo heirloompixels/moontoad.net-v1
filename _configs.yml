@@ -1,5 +1,5 @@
 ﻿post:
-  template: _post.txt
+  template: _posts/yyyy-mm-dd-template.md
   extension: md
 page:
   template: _page.txt
