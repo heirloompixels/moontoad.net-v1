@@ -18,7 +18,7 @@ I started a couple of Moon Sketches today, the first was fished out of the panel
 
 Here the darks are blocked in nicely. 
 
-![Lunarem Sketch - Oil](images/lunarem/2013-11-12-moon-sketch-No.1/MoonSketch3-web.jpg "This sketch started with oil paint. ")
+![Lunarem Sketch - Oil](images/lunarem/2013-11-12-moon-sketch-No.1/MoonSketch1.3-web.jpg "This sketch started with oil paint. ")
 
 The second panel started straightaway with oil paint. 
 
