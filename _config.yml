@@ -1,3 +1,7 @@
 permalink: none
 paginate: 8
 paginate_path: "chronos/page:num"
+
+name: Moon Toad
+description: Life and a Brush
+url: http://moontoad.net
