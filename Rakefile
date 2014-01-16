@@ -266,6 +266,7 @@ unless (File.basename(i) =~ /web/)
         image = Magick::Image.read(i).first
 
         webized_path = "images/#{category}/#{basefilename}/#{File.basename(i, '.*')}-web#{File.extname(i)}"
+        web_path = "http://moontoad.net/images/#{category}/#{basefilename}/#{File.basename(i, '.*')}-web#{File.extname(i)}"
 
 
 image.change_geometry!("680x") { |cols, rows, img|
@@ -276,7 +277,7 @@ image.change_geometry!("680x") { |cols, rows, img|
 
 
     
-        f << "![Title](#{webized_path} \"Alt Text\")\n" 
+        f << "![Title](#{web_path} \"Alt Text\")\n" 
         puts "added: #{i}"
         puts "added: #{webized_path}"
 
