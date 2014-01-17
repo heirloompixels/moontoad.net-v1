@@ -12,7 +12,7 @@ state: draft
 ---
 
 
-![Titanium white and oil](http://moontoad.net/images/alchemy/2014-01-15-make-white/P1159231-web.JPG alt="Titanium White, Chaulk and Oil")
+![Titanium white and oil](http://moontoad.net/images/alchemy/2014-01-15-make-white/P1159231-web.JPG "Titanium White Chaulk and Oil")
 
 I make my white paint every month or two.  This is titanium white, chaulk and aged, purified linseed oil.  The chaulk tones down the titanium and acts as a sicative.  The oil is flax oil I purify with the water, sand and salt method of old.  The paint is sublime. 
 
