@@ -277,7 +277,7 @@ image.change_geometry!("680x") { |cols, rows, img|
 
 
     
-        f << "![Title](#{web_path} \"Alt Text\")\n" 
+        f << "![Title](#{web_path} alt=\"Alt Text\")\n" 
         puts "added: #{i}"
         puts "added: #{webized_path}"
 
