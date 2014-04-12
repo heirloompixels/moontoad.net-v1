@@ -1,0 +1,20 @@
+---
+layout: spring2014
+---
+
+  {% for post in site.posts %}
+      <article>
+        <header> 
+          <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+      </header> 
+      <div class="content">
+        {{ post.content }}
+      </div>
+      <footer> 
+      <p>
+        Tagged: {{ post.tags | array_to_sentence_string }}
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </p>
+      </footer> 
+  </article> 
+  {% endfor %}

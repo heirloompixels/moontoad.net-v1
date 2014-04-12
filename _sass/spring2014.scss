@@ -1,0 +1,37 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+@import 'typeplate'; 
+@import 'typeplate'-vars; 
+
+@import "susy"; 
+// @import "breakpoint";
+
+$grid: 12 1/4 fluid float inside;
+
+
+
+body { 
+  @include layout($grid);
+  @include container(show);
+}
+
+nav { @include span(6 break);
+background-color: pink;}
+
+#blog {@include span( last 8 break); 
+  background-color: purple;}
+
+footer {
+  @include span( 12 break); 
+  background-color: yellow;
+}
+
+
+
+
+
